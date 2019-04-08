@@ -1,0 +1,55 @@
+/*µÇÂ½½çÃæcss*/
+.content-background {
+	position: absolute;
+	background: url("../../img/denglu.png") center no-repeat;
+	background-size: cover;
+	width: 100vw;
+	height: 100vh;
+}
+
+.content {
+	position: absolute;
+	left: 50%;
+	top: 20%;
+	width: 40vw;
+	height: 45vh;
+	margin-left: -20vw;
+	margin-top: 5vh;
+}
+
+.content .form-b {
+	width: 80%;
+	margin: 0 auto;
+	padding: 1em;
+}
+
+.form-b label {
+	position: relative;
+	padding-left: 25px;
+	font-weight: 400;
+	margin-bottom: 1rem;
+}
+
+.form-b input[type="text"], .form-b input[type="password"] {
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+	height: 40px;
+	margin-bottom: 1rem;
+}
+
+.form-b .chakan {
+	width: 30%;
+	height: 34px;
+	line-height: 30px;
+	display: block;
+	margin: 0 auto;
+}
+
+.form-b .form-ul {
+	margin-bottom: 1rem;
+}
+
+#j_rememberme {
+	opacity: 0;
+}

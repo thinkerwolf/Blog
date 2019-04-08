@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EasyBlog-首页</title>
+<link rel="shortcut icon" href="../../img/favicon.ico"
+	type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="../../css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../css/front/Global.css">
+<link rel="stylesheet" type="text/css" href="../../css/front/index.css">
+<!-- font Awesome -->
+<link href="../../css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Ionicons -->
+<link href="../../css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.min.js"></script>
+<!--公用Js-->
+<script type="text/javascript" src="../../js/easyblog.js"></script>
+
+</head>
+<body>
+
+
+	<div class="main-header">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed"
+						data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">EasyBlog</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul id="sysColumn" class="nav navbar-nav">
+						<li class="active"><a href="#">首页<span class="sr-only"></span></a></li>
+						<li><a href="#">Android</a></li>
+						<li><a href="#">前端</a></li>
+						<li><a href="#">后端</a></li>
+
+					</ul>
+					<form class="navbar-form navbar-left">
+						<div class="form-group">
+							<input type="text" class="form-input" placeholder="搜索..">
+						</div>
+						<button class="btn-search">
+							<span class="sprite-global-icon-magnifier-dark"></span>
+						</button>
+					</form>
+
+					<div class="top-menu top-menu-right">
+						<a class="btn btn-login" data-toggle="modal"
+							data-target="#loginModal">登陆</a> <a
+							class="btn btn-top btn-register" data-toggle="modal"
+							data-target="#registerModal">注册</a> <a
+							class="btn btn-top btn-wirte" href="#"> <i class="fa fa-edit"></i>&nbsp;写文章
+						</a>
+					</div>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+	</div>
+
+	<!--main content -->
+	<div class="container main-content">
+		<div class="banner">
+			<div id="myCarousel" class="carousel slide">
+				<!-- 轮播（Carousel）指标 -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+				</ol>
+				<!-- 轮播（Carousel）项目 -->
+				<div class="carousel-inner">
+					<div class="item item1 active"></div>
+					<div class="item item2"></div>
+					<div class="item item3"></div>
+				</div>
+				<!-- 轮播（Carousel）导航 -->
+				<a class="carousel-control left" href="#myCarousel"
+					data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+				<a class="carousel-control right" href="#myCarousel"
+					data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+			</div>
+		</div>
+
+		<!--文章列表区域-->
+		<div id="listArea" class="main-articles col-tx-6">
+			<!--Android-->
+			<div class="main-column">
+				<div class="main-title">
+					<span class="main-title-text">Android</span> <a
+						class="main-title-link">更多&nbsp;<i class="fa fa-chevron-right"></i></a>
+				</div>
+				<ul class="list-articles">
+					<li>
+						<div class="no-img">
+							<div class="author">
+								<a class="author-img" href="#"><img
+									src="../../img/avatar.png"></a>
+								<div class="name">
+									<a class="author-link">黑幕暗纱</a> <span class="time">5小时前</span>
+								</div>
+							</div>
+							<a class="title">致终将失去的青春-2017</a>
+							<p class="abstract">离开大学校园已经有三年多的时间了，看到有很多小伙伴在大学期间做了各种有意义的事，比如旅行、做公益、写作，现在回想起来我的大学，让我最遗憾的不是谈了一场无疾而终的异地恋，也不是..</p>
+							<div class="meta">
+								<a class="meta-label">Android</a>
+								<!--阅读量-->
+								<a class="meta-labelx"><i class="fa fa-eye"></i>&nbsp;190</a>
+								<!--评论数-->
+								<a><i class="fa fa-comment"></i>&nbsp;39</a> <a><i
+									class="fa fa-heart"></i>&nbsp;100</a>
+							</div>
+
+						</div>
+					</li>
+
+					<li><a class="abstract-img"><img
+							src="../../img/user-bg.png"></a>
+						<div class="has-img">
+							<div class="author">
+								<a class="author-img" href="#"><img
+									src="../../img/avatar.png"></a>
+								<div class="name">
+									<a class="author-link">黑幕暗纱</a> <span class="time">5小时前</span>
+								</div>
+							</div>
+							<a class="title">致终将失去的青春-2017</a>
+							<p class="abstract">离开大学校园已经有三年多的时间了，看到有很多小伙伴在大学期间做了各种有意义的事，比如旅行、做公益、写作，现在回想起来我的大学，让我最遗憾的不是谈了一场无疾而终的异地恋，也不是..</p>
+							<div class="meta">
+								<a class="meta-label">IOS</a>
+								<!--阅读量-->
+								<a><i class="fa fa-eye"></i>&nbsp;190</a>
+								<!--评论数-->
+								<a><i class="fa fa-comment"></i>&nbsp;39</a> <a><i
+									class="fa fa-heart"></i>&nbsp;100</a>
+							</div>
+						</div></li>
+				</ul>
+			</div>
+
+
+			<!--IOS-->
+			<div class="main-column">
+				<div class="main-title">
+					<span class="main-title-text">前端</span> <a class="main-title-link">更多&nbsp;<i
+						class="fa fa-chevron-right"></i></a>
+				</div>
+				<ul class="list-articles">
+					<li>
+						<div class="no-img">
+							<div class="author">
+								<a class="author-img" href="#"><img
+									src="../../img/avatar.png"></a>
+								<div class="name">
+									<a class="author-link">黑幕暗纱</a> <span class="time">5小时前</span>
+								</div>
+							</div>
+							<a class="title">致终将失去的青春-2017</a>
+							<p class="abstract">离开大学校园已经有三年多的时间了，看到有很多小伙伴在大学期间做了各种有意义的事，比如旅行、做公益、写作，现在回想起来我的大学，让我最遗憾的不是谈了一场无疾而终的异地恋，也不是..</p>
+							<div class="meta">
+								<a class="meta-label">Android</a>
+								<!--阅读量-->
+								<a class="meta-labelx"><i class="fa fa-eye"></i>&nbsp;190</a>
+								<!--评论数-->
+								<a><i class="fa fa-comment"></i>&nbsp;39</a> <a><i
+									class="fa fa-heart"></i>&nbsp;100</a>
+							</div>
+
+						</div>
+					</li>
+
+					<li><a class="abstract-img"><img
+							src="../../img/user-bg.png"></a>
+						<div class="has-img">
+							<div class="author">
+								<a class="author-img" href="#"><img
+									src="../../img/avatar.png"></a>
+								<div class="name">
+									<a class="author-link">黑幕暗纱</a> <span class="time">5小时前</span>
+								</div>
+							</div>
+							<a class="title">致终将失去的青春-2017</a>
+							<p class="abstract">离开大学校园已经有三年多的时间了，看到有很多小伙伴在大学期间做了各种有意义的事，比如旅行、做公益、写作，现在回想起来我的大学，让我最遗憾的不是谈了一场无疾而终的异地恋，也不是..</p>
+							<div class="meta">
+								<a class="meta-label">IOS</a>
+								<!--阅读量-->
+								<a><i class="fa fa-eye"></i>&nbsp;190</a>
+								<!--评论数-->
+								<a><i class="fa fa-comment"></i>&nbsp;39</a> <a><i
+									class="fa fa-heart"></i>&nbsp;100</a>
+							</div>
+						</div></li>
+				</ul>
+			</div>
+
+
+			<!--./main-articles-->
+		</div>
+
+		<!--main-recommend-->
+		<div class="main-recommend col-tx-3">
+			<!--热门标签-->
+			<div class="hot-label">
+				<div class="main-title">
+					<span class="main-title-text">热门专题</span>
+				</div>
+				<ul class="hot-label-content">
+					<li><a><span class="icon">+</span><span>JQuery</span></a></li>
+					<li><a><span class="icon">+</span><span>JQuery</span></a></li>
+					<li><a><span class="icon">+</span><span>JQuery</span></a></li>
+					<li><a><span class="icon">+</span><span>JQuery</span></a></li>
+					<li><a><span class="icon">+</span><span>JQuery</span></a></li>
+					<li><a><span class="icon">+</span><span>JQuery</span></a></li>
+				</ul>
+			</div>
+
+			<!--热门作者-->
+			<div class="hot-authors">
+				<div class="main-title">
+					<span class="main-title-text">推荐牛人</span>
+				</div>
+				<ul class="hot-author-content">
+					<li>
+						<div class="author">
+							<a class="col-tx-7">
+								<div class="author-img" href="#">
+									<img src="../../img/avatar.png">
+								</div>
+								<div class="name">
+									<div class="authorname">黑幕暗沙</div>
+									<div class="short">关注前端前沿</div>
+								</div>
+							</a> <a class="lookon col-tx-2"><span class="icon">+&nbsp;</span><span>关注</span></a>
+						</div>
+
+					</li>
+
+					<li>
+						<div class="author">
+							<a class="col-tx-7">
+								<div class="author-img" href="#">
+									<img src="../../img/avatar.png">
+								</div>
+								<div class="name">
+									<div class="authorname">黑幕暗沙</div>
+									<div class="short">关注前端前沿4444444444444444444。</div>
+								</div>
+							</a> <a class="lookon col-tx-2"><span class="icon">+&nbsp;</span><span>关注</span></a>
+
+						</div>
+
+					</li>
+				</ul>
+			</div>
+
+			<!--./main-recommend-->
+		</div>
+		<!--/.main content -->
+	</div>
+
+
+
+
+
+	<!--login-title-->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 30%;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">登陆</h4>
+				</div>
+				<div class="modal-body">
+					<form id="form-a">
+
+						<input type="text" placeholder="手机号/邮箱"> <input
+							type="password" placeholder="密码"> <a href=""
+							class="chakan">立即登陆</a>
+
+						<h4>
+							没有账号？<a href="" data-toggle="modal" data-target="#registerModal">立即注册</a>
+						</h4>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!--register-title-->
+	<div class="modal fade" id="registerModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 30%;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">注册</h4>
+				</div>
+				<div class="modal-body">
+					<form id="form-a">
+						<!-- <input type="text" placeholder="用户名">
+						<p>用户名错误</p>
+						<input type="password" placeholder="设置密码">
+						<p>密码错误</p>
+						<input type="password" placeholder="确认密码"> -->
+						<input type="text" placeholder="昵称"> <input type="text"
+							placeholder="手机号/邮箱"> <input type="password"
+							placeholder="密码"> <a href="" class="chakan">立即注册</a>
+
+						<h4>
+							已有账号？<a href="" data-toggle="modal" data-target="#loginModal">立即登陆</a>
+						</h4>
+
+					</form>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+
+
+
+	<!--returnToTop-->
+	<div class="feiji">
+		<div id="returnTop">
+			<i class="glyphicon glyphicon-plane"></i>
+		</div>
+	</div>
+
+
+</body>
+</html>

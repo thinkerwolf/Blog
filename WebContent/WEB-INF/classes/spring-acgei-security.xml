@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+	default-autowire="byName" default-lazy-init="true">
+
+	<!-- 过滤链 -->
+	<bean id="filterChainProxy" class="org.acegisecurity.util.FilterChainProxy">
+		<property name="filterInvocationDefinitionSource">
+			<value>
+				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+				PATTERN_TYPE_APACHE_ANT
+				/**=httpSessionContextIntegrationFilter,authenticationProcessingFilter,logoutFilter,rememberMeProcessingFilter,exceptionFilter,filterSecurityInterceptor
+			</value>
+		</property>
+	</bean>
+
+	<!-- 将用户信息存储在HttpSessionContext中 -->
+	<bean id="httpSessionContextIntegrationFilter"
+		class="org.acegisecurity.context.HttpSessionContextIntegrationFilter">
+		<property name="allowSessionCreation" value="false" />
+	</bean>
+
+	<!-- 用户表单验证，自定义登陆界面 -->
+	<bean id="authenticationProcessingFilter" class="com.blog.security.filter.AuthenticationProcessingFilter">
+		<!-- 认证管理器，委托Provider管理 -->
+		<property name="authenticationManager" ref="authenticationManager"></property>
+		<!-- 认证失败后，转向的页面 -->
+		<property name="authenticationFailureUrl" value="/pages/login/login.html?login_error=1"></property>
+		<!-- 认证成功后，转向的页面 -->
+		<property name="defaultTargetUrl" value="/index.html"></property>
+		<!-- 登陆的url -->
+		<property name="filterProcessesUrl" value="/j_acegi_security_check.do"></property>
+		<!-- 永远转到登陆成功后默认的目的地，如上文/userinfo.jsp -->
+		<property name="alwaysUseDefaultTargetUrl" value="true" />
+		<!-- rememberMeService 登陆成功后将 Cookie存入 -->
+		<property name="rememberMeServices" ref="rememberMeServices"></property>
+	</bean>
+
+	<bean id="logoutFilter" class="org.acegisecurity.ui.logout.LogoutFilter">
+		<property name="filterProcessesUrl" value="/j_acegi_logout.do"></property>
+		<constructor-arg value="/pages/login/login.html"></constructor-arg>
+		<constructor-arg>
+			<list>
+				<bean class="org.acegisecurity.ui.logout.SecurityContextLogoutHandler"></bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- ***************** 基础认证 判断用户身份 ******************* -->
+	<bean id="authenticationManager" class="org.acegisecurity.providers.ProviderManager">
+		<property name="providers">
+			<list>
+				<ref local="daoAuthenticationProvider" />
+				<ref local="anonymousAuthenticationProvider" />
+				<ref local="rememberMeAuthenticationProvider" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- ============ 基于数据库的身份验证 =================== -->
+	<bean id="daoAuthenticationProvider"
+		class="org.acegisecurity.providers.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService" />
+		<property name="passwordEncoder" ref="passwordEncoder" />
+	</bean>
+	<bean id="userDetailsService" class="com.blog.security.service.AcegiUserDetailServiceImpl">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+	<bean id="passwordEncoder" class="org.acegisecurity.providers.encoding.Md5PasswordEncoder" />
+	<!-- ============ 基于数据库的身份验证 =================== -->
+
+	<bean id="anonymousAuthenticationProvider"
+		class="org.acegisecurity.providers.anonymous.AnonymousAuthenticationProvider">
+		<property name="key" value="anonymous"></property>
+	</bean>
+	<!-- 记住我 提供者 -->
+	<bean id="rememberMeAuthenticationProvider"
+		class="org.acegisecurity.providers.rememberme.RememberMeAuthenticationProvider">
+		<property name="key" value="23_*!cdU='612./e;NrI"></property>
+	</bean>
+
+	<!-- 处理认证过程中产生的异常情况 -->
+	<bean id="exceptionFilter" class="org.acegisecurity.ui.ExceptionTranslationFilter">
+		<property name="accessDeniedHandler">
+			<bean class="org.acegisecurity.ui.AccessDeniedHandlerImpl">
+				<property name="errorPage" value="/pages/login/accessDenied.html"></property>
+			</bean>
+		</property>
+		<property name="authenticationEntryPoint">
+			<bean id="basicProcessingFilterEntryPoint"
+				class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint">
+				<property name="loginFormUrl" value="/pages/login/login.html" />
+			</bean>
+		</property>
+		<property name="createSessionAllowed" value="false" />
+	</bean>
+
+	<!-- 记住我处理Filter -->
+	<bean id="rememberMeProcessingFilter"
+		class="org.acegisecurity.ui.rememberme.RememberMeProcessingFilter">
+		<property name="authenticationManager">
+			<ref local="authenticationManager" />
+		</property>
+		<property name="rememberMeServices">
+			<ref local="rememberMeServices" />
+		</property>
+	</bean>
+
+	<bean id="rememberMeServices" class="com.blog.security.service.AcgeiRememberMeServices">
+		<property name="userDetailsService" ref="userDetailsService"></property>
+		<property name="key" value="23_*!cdU='612./e;NrI"></property>
+		<property name="parameter" value="j_rememberme"></property>
+	</bean>
+
+	<!-- 根据当前网页url 决定是否授权。。 -->
+	<bean id="filterSecurityInterceptor"
+		class="org.acegisecurity.intercept.web.FilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="accessDecisionManager" ref="accessDecisionManager" />
+		<property name="objectDefinitionSource" ref="dbInvocationDefinitionSource" />
+	</bean>
+
+	<bean id="dbInvocationDefinitionSource"
+		class="com.blog.security.intercept.web.DBFilterInvocationDefinitionSource">
+		<property name="convertUrlToLowercaseBeforeComparison" value="true"></property>
+		<property name="permissionService" ref="permissionService"></property>
+		<property name="secureUrls">
+			<list>
+				<value>/pages/login/login.html</value>
+				<value>/pages/login/accessDenied.html</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="accessDecisionManager" class="org.acegisecurity.vote.AffirmativeBased">
+		<property name="allowIfAllAbstainDecisions">
+			<value>false</value>
+		</property>
+		<property name="decisionVoters">
+			<list>
+				<bean class="org.acegisecurity.vote.RoleVoter">
+					<property name="rolePrefix" value="PERM_"></property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="permissionService" class="com.blog.security.service.TPermissionService">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
+
+	<bean id="authenticationLoggerListener" class="org.acegisecurity.event.authentication.LoggerListener" />
+</beans>

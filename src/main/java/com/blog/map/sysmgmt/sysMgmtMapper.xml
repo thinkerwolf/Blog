@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.sysmgmt">
+	<!-- 获取后台管理菜单SQL -->
+	<select id="getSysMenu"
+		resultType="com.blog.modal.SysMenu">
+		SELECT
+			SM.id,
+			SM.code,
+			SM.name,
+			SM.parent_id,
+			SM.createtime,
+			SM.seq,
+			SM.url
+		FROM
+			sys_menu SM
+	    ORDER BY SM.SEQ;
+	</select>
+</mapper>  

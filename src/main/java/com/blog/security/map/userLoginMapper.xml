@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.login">
+	<select id="getUser" parameterType="java.util.Map"
+		resultType="com.blog.security.modal.TUser">
+		SELECT
+		USERNAME, PASSWORD, ADDRESS, PHONE, CREATETIME, UPDATETIME,
+		LAST_LOGIN_TIME, STATUS, TRUENAME, PICTURE
+		FROM t_users
+		WHERE 1 = 1
+		<if test="username != null and username != ''">
+			AND USERNAME = #{username}
+		</if>
+		<if test="password != null and password != ''">
+			AND PASSWORD = #{password}
+		</if>
+	</select>
+
+	<select id="getUserPermission" parameterType="java.util.Map"
+		resultType="com.blog.security.modal.TPermission">
+		SELECT
+		C.*
+		FROM
+		t_users A,
+		t_userroles B,
+		t_permissions C,
+		t_rolepermissions D
+		WHERE
+		A.USERNAME = B.USERID
+		AND B.ROLEID = D.ROLEID
+		AND D.PERMISSIONID = C.PERMISSIONID
+		<if test="username != null and username != ''">
+			AND USERNAME = #{username}
+		</if>
+	</select>
+
+	<select id="getAllPermission" resultType="com.blog.security.modal.TPermission">
+		SELECT
+		C.*
+		FROM
+		t_userroles B,
+		t_permissions C,
+		t_rolepermissions D
+		WHERE
+		B.ROLEID = D.ROLEID
+		AND D.PERMISSIONID = C.PERMISSIONID
+	</select>
+</mapper>
