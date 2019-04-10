@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>EasyBlog后台管理系统V1.0</title>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable = no">
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="EasyBlog后台管理系统V1.0">
+<meta name="content-type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" type="text/css"
+	href="../framework/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../framework/css/front/Global.css">
+<link rel="stylesheet" type="text/css" href="../framework/css/front/login.css">
+
+<script type="text/javascript" src="../framework/js/jquery-1.11.0.min.js"></script>
+
+<script type="text/javascript">
+	var rootPath = getRootPath();
+	function getRootPath() {
+		var curPath = window.location.href;
+		var pathName = window.location.pathname;
+		console.log(curPath);
+		console.log(pathName);
+		var rootPath = curPath.substring(0, curPath.indexOf(pathName, 0));
+				//+ pathName.substring(0, pathName.indexOf("/", 1));
+		return rootPath;
+	}
+	
+	$(function() {
+		$("#j_rememberme").attr("checked", false);
+		$("#j_rememberme").val("false");
+		
+		
+		
+	});
+	
+	function onRememberMe() {
+		if($("#j_rememberme").val() == "false") {
+			$("#j_rememberme").val("true");
+		} else {
+			$("#j_rememberme").val("false");
+		}
+	}
+	
+	function onLogin() {
+		var username = $("#j_username").val(), password = $("#j_password")
+				.val(), rememberme = $("#j_rememberme").val();
+		if (username == "") {
+			alert("请输入用户名");
+			return;
+		}
+		if (password == "") {
+			alert("请输入密码");
+			return;
+		}
+		
+		$.ajax({
+			url : rootPath + "/j_acegi_security_check.do",
+			data : {
+				j_username : username,
+				j_password : password,
+				j_rememberme : rememberme
+			},
+			type : "POST",
+			async : false,
+			dataType : "json",
+			success : function(data) {
+				console.log(data);
+				var response = data.response;
+				if (response.result == "success") {
+					window.location.href = rootPath + response.targetUrl;
+
+				} else {
+					alert(response.message);
+				}
+			},
+			error : function() {
+				alert("登陆失败，请联系管理员");
+			}
+		});
+
+	}
+</script>
+
+</head>
+
+<body>
+	<div class="content-background"></div>
+
+	<div class="content">
+		<div class="logo"></div>
+		<form class="form-b">
+			<ul class="form-ul">
+				<li><input name="j_username" id="j_username" type="text"
+					placeholder="用户名"></li>
+				<li><input name="j_password" id="j_password" type="password"
+					placeholder="密码"></li>
+				<li><input name="j_rememberme" id="j_rememberme"
+					type="checkbox" value="false" onchange="onRememberMe()"> <label
+					for="j_rememberme">记住我</label></li>
+			</ul>
+			<a class="chakan" type="button" onclick="onLogin()">登陆</a>
+		</form>
+	</div>
+
+</body>
+</html>

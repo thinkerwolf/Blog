@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	
+  <classPathEntry location="C:\Users\wukai\.m2\repository\mysql\mysql-connector-java\8.0.13\mysql-connector-java-8.0.13.jar"/>
+  
+  
+  
+  <context id="context1">
+  	<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+  		<property name="searchString" value="$Example$"/> 
+        <property name="replaceString" value="Condition"/> 
+  	</plugin>
+  	
+  	
+    <jdbcConnection connectionURL="jdbc:mysql://127.0.0.1:3306/vcancbs?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" 
+    	driverClass="com.mysql.cj.jdbc.Driver" password="123" userId="root" />
+    
+    <javaModelGenerator targetPackage="com.thinkerwolf.blog.member.model" targetProject="blog/src/main/java" />
+    <sqlMapGenerator targetPackage="com.thinkerwolf.blog.member.mapper" targetProject="blog/src/main/java" />
+ <!--    <table schema="???" tableName="???">
+      <columnOverride column="???" property="???" />
+    </table>  -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.thinkerwolf.blog.member.mapper" targetProject="blog/src/main/java"></javaClientGenerator>
+	
+	<table tableName="member" domainObjectName="Member"></table>
+	
+  </context>
+  
+   <context id="context2">
+   	<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+  		<property name="searchString" value="Example$"/> 
+        <property name="replaceString" value="Condition"/> 
+  	</plugin>
+   	
+    <jdbcConnection connectionURL="jdbc:mysql://127.0.0.1:3306/vcancbs?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" 
+    	driverClass="com.mysql.cj.jdbc.Driver" password="123" userId="root" />
+    
+    <javaModelGenerator targetPackage="com.thinkerwolf.blog.article.model" targetProject="blog/src/main/java" />
+    <sqlMapGenerator targetPackage="com.thinkerwolf.blog.article.mapper" targetProject="blog/src/main/java" />
+ <!--    <table schema="???" tableName="???">
+      <columnOverride column="???" property="???" />
+    </table>  -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.thinkerwolf.blog.article.mapper" targetProject="blog/src/main/java"></javaClientGenerator>
+	
+	<table tableName="article" domainObjectName="Article"></table>
+	<table tableName="article_comment" domainObjectName="ArticleComment"></table>
+	<table tableName="article_topic" domainObjectName="ArticleTopic"></table>
+	<table tableName="topic" domainObjectName="Topic"></table>
+  </context>
+  
+  
+</generatorConfiguration>

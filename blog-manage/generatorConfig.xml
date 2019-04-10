@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	
+	
+  <classPathEntry location="C:\Users\wukai\.m2\repository\mysql\mysql-connector-java\8.0.13\mysql-connector-java-8.0.13.jar"/>
+  
+  <context id="context1">
+    <jdbcConnection connectionURL="jdbc:mysql://127.0.0.1:3306/vcancbs_sys?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" 
+    	driverClass="com.mysql.cj.jdbc.Driver" password="123" userId="root" />
+    
+    <javaModelGenerator targetPackage="com.thinkerwolf.blogmg.user.model" targetProject="blog-manage/src/main/java" />
+    <sqlMapGenerator targetPackage="com.thinkerwolf.blogmg.user.mapper" targetProject="blog-manage/src/main/java" />
+ <!--    <table schema="???" tableName="???">
+      <columnOverride column="???" property="???" />
+    </table>  -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.thinkerwolf.blogmg.user.mapper" targetProject="blog-manage/src/main/java"></javaClientGenerator>
+
+    <table schema="vcancbs_sys" tableName="t_user" domainObjectName="User">
+    	
+    </table>
+    <table tableName="permission" domainObjectName="Permission"></table>
+    <table tableName="role" domainObjectName="Role"></table>
+    <table tableName="role_permission" domainObjectName="RolePermission"></table>
+  </context>
+  
+   <context id="context2">
+    <jdbcConnection connectionURL="jdbc:mysql://127.0.0.1:3306/vcancbs_sys?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC" 
+    	driverClass="com.mysql.cj.jdbc.Driver" password="123" userId="root"  />
+    
+    <javaModelGenerator targetPackage="com.thinkerwolf.blogmg.menu.model" targetProject="blog-manage/src/main/java" />
+    <sqlMapGenerator targetPackage="com.thinkerwolf.blogmg.menu.mapper" targetProject="blog-manage/src/main/java" />
+ <!--    <table schema="???" tableName="???">
+      <columnOverride column="???" property="???" />
+    </table>  -->
+	 <javaClientGenerator type="XMLMAPPER" targetPackage="com.thinkerwolf.blogmg.menu.mapper" targetProject="blog-manage/src/main/java"></javaClientGenerator>
+	
+    <table tableName="menu" domainObjectName="Menu"></table>
+  </context>
+</generatorConfiguration>
