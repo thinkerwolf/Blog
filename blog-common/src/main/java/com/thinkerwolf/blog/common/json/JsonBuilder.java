@@ -12,8 +12,7 @@ public class JsonBuilder {
 	public static final Map<String, Object> DEFAULT_SUCJSON;
 	
 	static {
-		DEFAULT_SUCJSON = new HashMap<>();
-		getJson(State.SUCCESS, "");
+		DEFAULT_SUCJSON = getJson(State.SUCCESS, "");
 	}
 	
 	public static Map<String, Object> getSucJson() {

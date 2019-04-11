@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.thinkerwolf.blog.member.service.MemberService;
 
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/api/member")
 public class MemberController {
 	
 	@Autowired

@@ -3,6 +3,8 @@ package com.thinkerwolf.blog.security;
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import com.thinkerwolf.blog.security.config.WebSecurityConfig;
+
 public class MvcWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Nullable
