@@ -93,7 +93,7 @@ public class SnowflakeIdGenerator extends StringIdGenerator {
 			if (random == null) {
 				random = new Random();
 			}
-			random.nextLong();
+			return random.nextLong();
 		} else if (ctime > lastTime) {
 			// 不在毫秒内，序号清0
 			secquence = 0;

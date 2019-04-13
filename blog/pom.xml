@@ -57,6 +57,10 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.acegisecurity</groupId>
 			<artifactId>acegi-security</artifactId>
 			<version>1.0.7</version>
@@ -92,13 +96,13 @@
 			<artifactId>fastjson</artifactId>
 			<version>1.2.24</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.thinkerwolf</groupId>
 			<artifactId>blog-common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
+
 	</dependencies>
 
 
