@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 
 import com.thinkerwolf.blog.common.generator.IdGeneratorManager;
@@ -27,23 +29,16 @@ public class MemberUserDetailsService implements UserDetailsManager {
 	@Autowired
 	MemberMapper memberMapper;
 
+	private PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		if (StringUtils.isBlank(username)) {
 			throw new UsernameNotFoundException("Username is empty");
 		}
-		MemberCondition codi = new MemberCondition();
-		codi.or().andUsernameEqualTo(username);
-		List<Member> members = memberMapper.selectByCondition(codi);
-		if (members.size() == 0) {
-			throw new UsernameNotFoundException("User:" + username + " not found");
-		}
-		if (members.size() > 1) {
-			throw new UsernameNotFoundException("Multi users with the same name");
-		}
 		// TODO 验证帐号是否过期，帐号是否被锁，授权是否过期
-		Member member = members.get(0);
-		User user = new User(username, member.getPassword(), Collections.emptyList());
+		Member member = getMember(username);
+		User user = new User(username, passwordEncoder.encode(member.getPassword()), Collections.emptyList());
 		return user;
 	}
 
@@ -81,6 +76,21 @@ public class MemberUserDetailsService implements UserDetailsManager {
 		codi.or().andUsernameEqualTo(username);
 		List<Member> members = memberMapper.selectByCondition(codi);
 		return members.size() > 0;
+	}
+
+	private Member getMember(String username) {
+		MemberCondition codi = new MemberCondition();
+		codi.or().andUsernameEqualTo(username);
+		List<Member> members = memberMapper.selectByCondition(codi);
+		if (members.size() == 0) {
+			throw new UsernameNotFoundException("User:" + username + " not found");
+		}
+		if (members.size() > 1) {
+			throw new UsernameNotFoundException("Multi users with the same name");
+		}
+		// TODO 验证帐号是否过期，帐号是否被锁，授权是否过期
+		Member member = members.get(0);
+		return member;
 	}
 
 }
