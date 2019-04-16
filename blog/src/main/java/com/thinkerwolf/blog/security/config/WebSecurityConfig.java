@@ -22,6 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/index", "/signup").permitAll()
                 .antMatchers("/css/**", "/js/**", "/images/**", "/error/**", "/topic/**").permitAll()
+                .antMatchers("/api/member/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login")
@@ -36,4 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         MemberUserDetailsService memberUserDetailsService = new MemberUserDetailsService();
         return memberUserDetailsService;
     }
+    
+    
+    
 }

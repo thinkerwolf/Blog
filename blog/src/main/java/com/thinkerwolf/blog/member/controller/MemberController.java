@@ -16,10 +16,11 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping("/register")
+	@RequestMapping("/signup")
 	@ResponseBody
-	public Map<String, Object> register(String username, String password) {
-		return memberService.register(username, password);
+	public Map<String, Object> register(String username, String password, String confirmpassword) {
+		Map<String, Object> map = memberService.register(username, password, confirmpassword);
+		return map;
 	}
 	
 	@RequestMapping("/login")

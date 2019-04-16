@@ -38,7 +38,7 @@ public class MemberUserDetailsService implements UserDetailsManager {
 		}
 		// TODO 验证帐号是否过期，帐号是否被锁，授权是否过期
 		Member member = getMember(username);
-		User user = new User(username, passwordEncoder.encode(member.getPassword()), Collections.emptyList());
+		User user = new User(username, member.getPassword(), Collections.emptyList());
 		return user;
 	}
 
@@ -91,6 +91,10 @@ public class MemberUserDetailsService implements UserDetailsManager {
 		// TODO 验证帐号是否过期，帐号是否被锁，授权是否过期
 		Member member = members.get(0);
 		return member;
+	}
+
+	public PasswordEncoder getPasswordEncoder() {
+		return passwordEncoder;
 	}
 
 }
