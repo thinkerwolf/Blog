@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -17,6 +16,7 @@ import com.thinkerwolf.blog.common.generator.IdGeneratorManager;
 import com.thinkerwolf.blog.member.mapper.MemberMapper;
 import com.thinkerwolf.blog.member.model.Member;
 import com.thinkerwolf.blog.member.model.MemberCondition;
+import com.thinkerwolf.blog.security.MemberUser;
 
 /**
  * 自定义UserDetailsManager
@@ -38,7 +38,7 @@ public class MemberUserDetailsService implements UserDetailsManager {
 		}
 		// TODO 验证帐号是否过期，帐号是否被锁，授权是否过期
 		Member member = getMember(username);
-		User user = new User(username, member.getPassword(), Collections.emptyList());
+		MemberUser user = new MemberUser(member, username, member.getPassword(), Collections.emptyList());
 		return user;
 	}
 

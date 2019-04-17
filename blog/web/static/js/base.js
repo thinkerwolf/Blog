@@ -17,6 +17,10 @@
         });
     }, false);
     
+    $('body').bootstrapMaterialDesign();
+    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="popover"]').popover();
+
     $.fn.serializeObject = function () {
         var o = {};
         var a = this.serializeArray();

@@ -29,4 +29,10 @@ public class MemberController {
 		return memberService.login(username, password);
 	}
 	
+	@RequestMapping("/curmem")
+	@ResponseBody
+	public Map<String, Object> currentMember() {
+		return memberService.currentMember();
+	}
+	
 }

@@ -1,93 +1,97 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 <head>
     <meta charset="UTF-8">
     <title>首页-Easyblog</title>
-    <meta name="keywords" content="blog"/>
-    <meta name="description" content="blog"/>
+    <meta name="keywords" content="blog" />
+    <meta name="description" content="blog" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Material Design for Bootstrap fonts and icons
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons"> -->
-
     <!-- Material Design for Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css"
-          href="css/bootstrap-material-design.min.css">
-    <!--<link rel="stylesheet" type="text/css" href="css/meterial_icons.css">-->
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-material-design.min.css">
+    <link rel="stylesheet" type="text/css" href="css/meterial_icons.css">
 </head>
-<body>
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="/index">Easyblog</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">首页 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">前端</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">后端</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>
-    </nav>
+<body class="mdbootstrap">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary px-4">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="/index">Easyblog</a>
+            <div class="navbar-nav-scroll">
+                <ul class="navbar-nav bd-navbar-nav flex-row">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/index">首页 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/topic/front">前端</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/topic/backend">后端</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/topic/android">Android</a>
+                    </li>
+                </ul>
+            </div>
 
-<!--<nav class="navbar  navbar-expand navbar-dark bg-primary text-light">
-    <a class="navbar-brand" href="/index" aria-label="Easyblog">Easyblog</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" data-toggle="collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/index">首页</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/home">前端</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/home">后端</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/home">Android</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline navbar-nav flex-row  ml-md-auto  d-md-flex mr-3">
+                    <input class="form-control mr-sm-2" type="search" placeholder="请输入搜索关键词" aria-label="Search">
+                    <button class="btn btn-primary bmd-btn-icon active" type="submit">
+                        <i class="material-icons">search</i>
+                    </button>
+                </form>
+
+                <ul id="loginsignup" class="navbar-nav mr-4 d-inline-flex">
+                    <li class="nav-item">
+                        <a class="nav-link p-2" href="/login">登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-2" href="/signup">注册</a>
+                    </li>
+                </ul>
+
+                <ul id="curmember" class="navbar-nav mr-4 d-inline-flex">
+                    <li class="nav-item">
+                        <img class="head-photo rounded-circle" src="/images/text01.jpg"/>
+                    </li>
+
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+
+    <div class="container">
+
+
     </div>
-</nav>-->
-</header>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <!--<script src="js/jquery-1.8.3.min.js" type="javascript"></script>-->
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap-material-design.js"></script>
+    <script src="js/base.js"></script>
 
-<div class="container">
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '/api/member/curmem',
+                dataType: 'json',
+                success: function (message) {
+                    if (message.state == 'success') {
+                        console.log(message.data);
+                    } else {
 
-
-</div>
-<script src="js/jquery-3.2.1.slim.min.js"></script>
-
-<!--<script src="js/jquery-1.8.3.min.js" type="javascript"></script>-->
-<script src="js/popper.js"></script>
-<script src="js/bootstrap-material-design.js"></script>
-
-<script>
-    $(document).ready(function () {
-        $('body').bootstrapMaterialDesign();
-        $('[data-toggle="tooltip"]').tooltip();
-        $('[data-toggle="popover"]').popover();
-    });
-</script>
+                    }
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
