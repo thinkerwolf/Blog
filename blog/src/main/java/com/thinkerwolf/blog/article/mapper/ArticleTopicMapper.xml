@@ -253,4 +253,5 @@
       topic_id = #{topicId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
 </mapper>

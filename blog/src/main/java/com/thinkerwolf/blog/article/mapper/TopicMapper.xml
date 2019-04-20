@@ -253,4 +253,17 @@
       pic = #{pic,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getAriticleTopics" parameterType="com.thinkerwolf.blog.article.model.TopicCondition"  resultMap="BaseResultMap">
+    SELECT
+        t.id,
+        t.name,
+        t.pic
+    FROM
+	    topic t
+	    LEFT JOIN article_topic AT ON t.id = AT.topic_id 
+    <if test="_parameter != null">
+      <include refid="Condition_Where_Clause" />
+    </if>
+  </select>
 </mapper>

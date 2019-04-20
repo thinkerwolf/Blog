@@ -315,4 +315,25 @@
       browse_num = #{browseNum,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectTopicArticles" parameterType="map" resultMap="BaseResultMap">
+    select
+        distinct
+        a.id, a.title, a.member_id, a.title, a.sub_title, a.pic, a.create_time, a.browse_num
+    from
+        article a
+        left join article_topic at ON at.article_id = a.id 
+    <if test="_parameter != null">
+      <include refid="Condition_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+            order by ${orderByClause}
+    </if>
+    <if test="limition != null">
+            limit ${limition}
+    </if>
+  </select>
+
+
+
 </mapper>

@@ -4,17 +4,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>首页-Easyblog</title>
+    <title th:text="${title}">首页-Easyblog</title>
     <meta name="keywords" content="blog" />
     <meta name="description" content="blog" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="css/meterial_icons.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link th:href="@{~/css/meterial_icons.css}" href="/css/meterial_icons.css" rel="stylesheet">
+    <link th:href="@{~/css/bootstrap.css}" href="/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
-    <link href="css/mdb.min.css" rel="stylesheet">
+    <link th:href="@{~/css/mdb.min.css}" href="/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="css/style.css" rel="stylesheet">
+    <link th:href="@{~/css/style.css}" href="/css/style.css" rel="stylesheet">
 </head>
 
 <body class="mdbootstrap">
@@ -30,12 +29,16 @@
             </div>
             <div class="collapse navbar-collapse" id="collapseContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="/index">首页
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li th:each="topic,iterStat:${topics}" class="nav-item">
+                        <a class="nav-link" th:href="@{/topic/{id}(id=${topic.id})}" th:text="${topic.name}">Item</a>
+                    </li>
+
+                    <!--<li class="nav-item">
                         <a class="nav-link" href="#">前端</a>
                     </li>
                     <li class="nav-item">
@@ -43,9 +46,8 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Android</a>
-                    </li>
+                    </li>-->
                 </ul>
-
             </div>
 
             <ul class="nav navbar-nav nav-flex-icons ml-auto">
@@ -67,7 +69,7 @@
                 <li id="logout-drop-meun" class="nav-item dropdown">
                     <a class="nav-link" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <img src="/img/svg/default-avatar.svg" class="img-fluid z-depth-1 rounded-circle head-photo">
+                        <i class="material-icons">person</i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
                         aria-labelledby="navbarDropdownMenuLink">
@@ -94,17 +96,32 @@
 
             </ul>
         </nav>
+        <div class="card card-intro sky-gradient">
+            <div class="card-body white-text rgba-black-light text-center">
+                <!--Grid row-->
+                <div class="row d-flex justify-content-center">
+                    <!--Grid column-->
+                    <div class="col-md-6">
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!--Grid row-->
+            </div>
+        </div>
     </header>
+    <main class="pt-5">
+        <div layout:fragment="content" id="content" class="container-fluid">
 
-    <div class="container">
+        </div>
+    </main>
 
 
-    </div>
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/mdb.min.js"></script>
-    <script src="js/base.js"></script>
+    <script th:src="@{~/js/jquery-3.2.1.min.js}" src="/js/jquery-3.2.1.min.js"></script>
+    <script th:src="@{~/js/bootstrap.min.js}" src="/js/bootstrap.min.js"></script>
+    <script th:src="@{~/js/popper.js}" src="/js/popper.js"></script>
+    <script th:src="@{~/js/mdb.min.js}" src="/js/mdb.min.js"></script>
+    <script th:src="@{~/js/base.js}" src="/js/base.js"></script>
+    <script layout:fragment="extrajs"></script>
     <script>
         $(document).ready(function () {
             $('#login-drop-menu').hide();
@@ -142,7 +159,6 @@
                 if (sv == '') {
                     $('#search-content').removeClass('open');
                 }
-                $('#search-input').focus();
                 return false;
             });
 

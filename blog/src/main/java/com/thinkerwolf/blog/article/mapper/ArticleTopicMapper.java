@@ -2,6 +2,8 @@ package com.thinkerwolf.blog.article.mapper;
 
 import com.thinkerwolf.blog.article.model.ArticleTopic;
 import com.thinkerwolf.blog.article.model.ArticleTopicCondition;
+import com.thinkerwolf.blog.article.model.Topic;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -93,4 +95,5 @@ public interface ArticleTopicMapper {
      * @mbg.generated Wed Apr 10 19:13:51 CST 2019
      */
     int updateByPrimaryKey(ArticleTopic record);
+    
 }

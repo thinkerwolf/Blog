@@ -93,4 +93,6 @@ public interface TopicMapper {
      * @mbg.generated Wed Apr 10 19:13:51 CST 2019
      */
     int updateByPrimaryKey(Topic record);
+    
+    List<Topic> getAriticleTopics(TopicCondition example);
 }
