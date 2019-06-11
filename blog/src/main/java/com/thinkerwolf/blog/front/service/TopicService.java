@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 
 import com.thinkerwolf.blog.article.mapper.ArticleMapper;
@@ -20,7 +21,8 @@ public class TopicService {
 	ArticleTopicMapper articleTopicMapper;
 	@Autowired
 	ArticleMapper articleMapper;
-
+	
+	@Transactional
 	public void index(ModelMap map) {
 		List<Topic> topics = topicMapper.selectByCondition(null);
 		map.addAttribute("topics", topics);
