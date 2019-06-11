@@ -2,6 +2,7 @@ package com.thinkerwolf.blog.front.service;
 
 import java.util.List;
 
+import com.thinkerwolf.blog.article.model.TopicCondition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +25,9 @@ public class TopicService {
 	
 	@Transactional
 	public void index(ModelMap map) {
-		List<Topic> topics = topicMapper.selectByCondition(null);
+		TopicCondition cond = new TopicCondition();
+		cond.or().andNavEqualTo(1);
+		List<Topic> topics = topicMapper.selectByCondition(cond);
 		map.addAttribute("topics", topics);
 	}
 
