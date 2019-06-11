@@ -393,6 +393,11 @@ public class TopicCondition {
             addCriterion("pic not between", value1, value2, "pic");
             return (Criteria) this;
         }
+        public Criteria andNavEqualTo(Integer val) {
+            addCriterion("nav=", val, "nav");
+            return (Criteria) this;
+        }
+
     }
 
     /**
